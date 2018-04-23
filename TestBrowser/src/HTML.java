@@ -9,7 +9,7 @@ public class HTML
 {
 
 	private String	fileName	= "Assets/index.html";
-	private String	cssFileName	= "base.css";
+	private String	cssFileName	= "Assets/base.css";
 	private File			htmlFile;
 	private File			cssFile;
 	private PrintWriter		writer;
@@ -17,8 +17,7 @@ public class HTML
 	public HTML()
 	{
 		htmlFile = new File(fileName);
-		cssFile = new File("Assets/base.css");
-		
+		cssFile = new File(cssFileName);		
 		cssFileName = cssFile.getAbsolutePath();
 		fileName = htmlFile.getAbsolutePath();
 
@@ -27,17 +26,7 @@ public class HTML
 		{
 			writer = new PrintWriter(new FileWriter(htmlFile));
 			htmlStart();
-			htmlCSSLink(cssFileName);
-			htmlHeader("Manuscript", 1);
-			List<String[]> data = new ArrayList<String[]>();
-			data.add(new String[] { "Library1", "Country1" });
-			data.add(new String[] { "Library2", "Country2" });
-			data.add(new String[] { "Library3", "Country3" });
-
-			htmlTable(new String[] { "Libraries", "Country" }, data);
-
-			htmlEnd();
-
+			
 		} catch (IOException e)
 		{
 			e.printStackTrace();
@@ -51,8 +40,9 @@ public class HTML
 
 	public void htmlStart()
 	{
-		writer.println("<html>");
+		writer.println("<html>");					
 		writer.flush();
+		htmlCSSLink(cssFileName);
 	}
 
 	public void htmlEnd()
